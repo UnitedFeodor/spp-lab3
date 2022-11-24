@@ -25,7 +25,7 @@ namespace directory_scanner
             {
                 if (maxThreadCount == 0)
                 {
-                    throw new Exception("Illegal thread count");
+                    throw new Exception($"Illegal thread count: {maxThreadCount}");
                 }
 
                 _tokenSource = new CancellationTokenSource();
@@ -47,7 +47,7 @@ namespace directory_scanner
                 }
 
                 var directoryInfo = new DirectoryInfo(path);
-                _tree = new FileTree(true, directoryInfo.Name, directoryInfo.FullName, 100);
+                _tree = new FileTree(true, directoryInfo.Name, directoryInfo.FullName,(double) 100);
                 
                 _tree.Children = new List<FileTree>();
                 _taskQueue = new TaskQueue(_tokenSource, _maxThreadCount);
@@ -106,7 +106,7 @@ namespace directory_scanner
                         if (token.IsCancellationRequested)
                             return;
 
-                        var tree = new FileTree(true, directoryInfo.Name, directoryInfo.FullName);
+                        var tree = new FileTree(true, directory.Name, directory.FullName);
                     
                         tree.Children = new List<FileTree>();
                         node.Children.Add(tree);
@@ -121,7 +121,7 @@ namespace directory_scanner
                         if (token.IsCancellationRequested)
                             return;
 
-                        var tree = new FileTree(false, file.Name, file.FullName,file.Length);
+                        var tree = new FileTree(false, file.Name, file.FullName,(ulong) file.Length);
                         
                         node.Children.Add(tree);
                     }

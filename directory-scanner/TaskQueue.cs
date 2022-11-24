@@ -47,6 +47,14 @@ namespace directory_scanner
             }
         }
 
+        public void EnqueueTask(Action? task)
+        {
+            lock (_tasks)
+            {
+                _tasks.Enqueue(task);
+                Monitor.Pulse(_tasks);
+            }
+        }
         private Action? DequeueTask()
         {
             lock (_tasks)

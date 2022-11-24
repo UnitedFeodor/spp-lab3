@@ -10,7 +10,12 @@
       "ProjectGuid": "b53ec478-2f85-449b-a5ea-48b4fa06835e",
       "DisplayName": "directory-scanner",
       "ColorIndex": 1
+    },
+    "a34c7a0b-a81f-4f8a-ac4a-114ab1623fb8": {
+      "ProjectGuid": "a34c7a0b-a81f-4f8a-ac4a-114ab1623fb8",
+      "DisplayName": "directory-scanner.tests",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 2
+  "NextColorIndex": 3
 }
