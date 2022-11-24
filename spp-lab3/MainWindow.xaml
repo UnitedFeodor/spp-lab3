@@ -3,10 +3,64 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+   
+        xmlns:viewmodel="clr-namespace:directory_scanner.wpf.ViewModel"  d:DataContext="{d:DesignInstance Type=viewmodel:AppViewModel}"
         xmlns:local="clr-namespace:spp_lab3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="500" Width="1000" ResizeMode="NoResize">
+    
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="Style">
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+    </Window.Resources>
+    <Window.DataContext>
+        <viewmodel:AppViewModel/>
+    </Window.DataContext>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="200" MaxWidth="300"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Background="AliceBlue">
+            <TextBlock Margin="5 15" FontFamily="Arial" FontSize="15" Foreground="Black" Text="ROOT FILE PATH: "/>
+            <TextBlock Margin="5 0" FontFamily="Arial" FontSize="15" Foreground="Black" TextWrapping="Wrap" Text="{Binding Path}"/>
+            <TextBlock Margin="5 0 0 250" FontFamily="Arial" FontSize="15" Foreground="Black" Text="{Binding StringFormat=(\{0\} bytes\), Path=Length}"/>
 
+            <Button Foreground="Black" Margin="5" Command="{Binding SetDirectoryCommand}">Choose directory</Button>
+            <Button Foreground="Black" Margin="5" Command="{Binding StartScanningCommand}">Scan</Button>
+            <Button Foreground="Black" Margin="5 5 5 15" VerticalAlignment="Bottom" Command="{Binding StopScanningCommand}">Stop</Button>
+            
+
+
+
+
+        </StackPanel>
+        <GridSplitter Grid.Column="1" ShowsPreview="False" Width="3"
+            HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="AliceBlue"/>
+        <ScrollViewer Grid.Column="2">
+            <TreeView ItemsSource="{Binding Tree.Children}" Background="AliceBlue">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Path=Children}">
+                        <StackPanel Orientation="Horizontal" Background="AliceBlue">
+                            <Image Source="{Binding Path=Icon}" MaxHeight="20"></Image>
+                            <TextBlock FontFamily="Arial" FontSize="20" Foreground="Black" Text="{Binding Name}"/>
+                            <TextBlock FontFamily="Arial" FontSize="20" Foreground="Black" Text=" ("/>
+                            <TextBlock FontFamily="Arial" FontSize="20" Foreground="Black" Text="{Binding Length}"/>
+                            <TextBlock FontFamily="Arial" FontSize="20" Foreground="Black" Text=" bytes, "/>
+                            <TextBlock FontFamily="Arial" FontSize="20" Foreground="Black" Text="{Binding LengthPercentage, StringFormat=N2}"/>
+                            <TextBlock FontFamily="Arial" FontSize="20" Foreground="Black" Text="%)"/>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </ScrollViewer>
     </Grid>
 </Window>

@@ -3,11 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "spp-lab3", "spp-lab3\spp-lab3.csproj", "{424CF08E-7180-4EDD-92D9-9E2C0D35A1CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "directory-scanner.wpf", "spp-lab3\directory-scanner.wpf.csproj", "{424CF08E-7180-4EDD-92D9-9E2C0D35A1CE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B53EC478-2F85-449B-A5EA-48B4FA06835E} = {B53EC478-2F85-449B-A5EA-48B4FA06835E}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "directory-scanner", "directory-scanner\directory-scanner.csproj", "{B53EC478-2F85-449B-A5EA-48B4FA06835E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "directory-scanner.tests", "directory-scanner.tests\directory-scanner.tests.csproj", "{A34C7A0B-A81F-4F8A-AC4A-114AB1623FB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "directory-scanner.tests", "directory-scanner.tests\directory-scanner.tests.csproj", "{A34C7A0B-A81F-4F8A-AC4A-114AB1623FB8}"
 	ProjectSection(ProjectDependencies) = postProject
 		{B53EC478-2F85-449B-A5EA-48B4FA06835E} = {B53EC478-2F85-449B-A5EA-48B4FA06835E}
 	EndProjectSection

@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net6.0-windows7.0": {}
+    "net6.0-windows10.0.22000": {
+      "directory-scanner/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/directory-scanner.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/directory-scanner.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "directory-scanner/1.0.0": {
+      "type": "project",
+      "path": "../directory-scanner/directory-scanner.csproj",
+      "msbuildProject": "../directory-scanner/directory-scanner.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0-windows7.0": []
+    "net6.0-windows10.0.22000": [
+      "directory-scanner >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Пользователь.DESKTOP-Q0U0VUP\\.nuget\\packages\\": {}
@@ -13,9 +32,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\5 sem\\spp\\lab3\\spp-lab3\\spp-lab3\\spp-lab3.csproj",
-      "projectName": "spp-lab3",
-      "projectPath": "D:\\5 sem\\spp\\lab3\\spp-lab3\\spp-lab3\\spp-lab3.csproj",
+      "projectUniqueName": "D:\\5 sem\\spp\\lab3\\spp-lab3\\spp-lab3\\directory-scanner.wpf.csproj",
+      "projectName": "directory-scanner.wpf",
+      "projectPath": "D:\\5 sem\\spp\\lab3\\spp-lab3\\spp-lab3\\directory-scanner.wpf.csproj",
       "packagesPath": "C:\\Users\\Пользователь.DESKTOP-Q0U0VUP\\.nuget\\packages\\",
       "outputPath": "D:\\5 sem\\spp\\lab3\\spp-lab3\\spp-lab3\\obj\\",
       "projectStyle": "PackageReference",
@@ -24,16 +43,20 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net6.0-windows7.0"
+        "net6.0-windows10.0.22000"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net6.0-windows7.0": {
-          "targetAlias": "net6.0-windows",
-          "projectReferences": {}
+        "net6.0-windows10.0.22000": {
+          "targetAlias": "net6.0-windows10.0.22000.0",
+          "projectReferences": {
+            "D:\\5 sem\\spp\\lab3\\spp-lab3\\directory-scanner\\directory-scanner.csproj": {
+              "projectPath": "D:\\5 sem\\spp\\lab3\\spp-lab3\\directory-scanner\\directory-scanner.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -43,8 +66,8 @@
       }
     },
     "frameworks": {
-      "net6.0-windows7.0": {
-        "targetAlias": "net6.0-windows",
+      "net6.0-windows10.0.22000": {
+        "targetAlias": "net6.0-windows10.0.22000.0",
         "imports": [
           "net461",
           "net462",
@@ -55,11 +78,20 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.Windows.SDK.NET.Ref",
+            "version": "[10.0.22000.22, 10.0.22000.22]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           },
-          "Microsoft.WindowsDesktop.App.WPF": {
+          "Microsoft.Windows.SDK.NET.Ref": {
+            "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App": {
             "privateAssets": "none"
           }
         },

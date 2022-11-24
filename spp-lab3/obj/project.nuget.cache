@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "M97MUnwlKdLE+ThktCzZEenilOsirrk9XWsriWyB14/yunMq6Hfm2HFRhmb9PfHb6AQX2mA9eTrpHHEFD4AIQA==",
+  "dgSpecHash": "9UCD1uYSrE4SXiuRxNvPLcoG1ItpgYxaDajMurx3kLDyqtHA5ftLlXYA1Ap/2YgySgY01FfaFSOJ7LnpllC/NA==",
   "success": true,
-  "projectFilePath": "D:\\5 sem\\spp\\lab3\\spp-lab3\\spp-lab3\\spp-lab3.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\5 sem\\spp\\lab3\\spp-lab3\\spp-lab3\\directory-scanner.wpf.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Пользователь.DESKTOP-Q0U0VUP\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.22000.22\\microsoft.windows.sdk.net.ref.10.0.22000.22.nupkg.sha512"
+  ],
   "logs": []
 }

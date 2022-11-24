@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows10.0.22000.0</TargetFramework>
+    <RootNamespace>spp_lab3</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+	<UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\directory-scanner\directory-scanner.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Icons\" />
+  </ItemGroup>
+
+    <ItemGroup>
+	    <Resource Include="Icons\file.png" />
+	    <Resource Include="Icons\folder.png" />
+    </ItemGroup>
+
+	<ItemGroup>
+		<None Remove="Icons\file.png" />
+		<None Remove="Icons\folder.png" />
+	</ItemGroup>
+</Project>
