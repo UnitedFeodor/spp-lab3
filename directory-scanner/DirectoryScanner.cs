@@ -62,7 +62,7 @@ namespace directory_scanner
                 return _tree;
             }
 
-            public FileTree GetResult()
+            public FileTree Finish()
             {
                 _taskQueue.WaitForEnd();
                 _tree.GetLength();

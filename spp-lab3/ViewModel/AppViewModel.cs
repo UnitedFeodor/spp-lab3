@@ -82,7 +82,7 @@ namespace directory_scanner.wpf.ViewModel
                 {
                     _directoryScanner = new DirectoryScanner(MaxThreadCount);
                     _directoryScanner.Start(Path);
-                    var directoryTree = _directoryScanner.GetResult();
+                    var directoryTree = _directoryScanner.Finish();
                     Tree = new ModelFileTree();
                     Tree.Children = new List<ModelFileTree>() { new(directoryTree) };
                     IsScanning = false;
