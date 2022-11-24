@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "spp-lab3", "spp-lab3\spp-lab3.csproj", "{424CF08E-7180-4EDD-92D9-9E2C0D35A1CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "directory-scanner", "directory-scanner\directory-scanner.csproj", "{B53EC478-2F85-449B-A5EA-48B4FA06835E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{424CF08E-7180-4EDD-92D9-9E2C0D35A1CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{424CF08E-7180-4EDD-92D9-9E2C0D35A1CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{424CF08E-7180-4EDD-92D9-9E2C0D35A1CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B53EC478-2F85-449B-A5EA-48B4FA06835E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B53EC478-2F85-449B-A5EA-48B4FA06835E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B53EC478-2F85-449B-A5EA-48B4FA06835E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B53EC478-2F85-449B-A5EA-48B4FA06835E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
