@@ -15,6 +15,11 @@
       "ProjectGuid": "a34c7a0b-a81f-4f8a-ac4a-114ab1623fb8",
       "DisplayName": "directory-scanner.tests",
       "ColorIndex": 2
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Прочие файлы",
+      "ColorIndex": -1
     }
   },
   "NextColorIndex": 3
