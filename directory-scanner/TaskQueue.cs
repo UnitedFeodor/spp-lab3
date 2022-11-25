@@ -78,7 +78,10 @@ namespace directory_scanner
 
         public void WaitForEnd()
         {
-            while (_taskCount != _maxThreadCount && !_cancellationToken.Token.IsCancellationRequested) { }
+            while (_taskCount != _maxThreadCount && !_cancellationToken.Token.IsCancellationRequested) 
+            {
+            
+            }
         }
 
         public void Cancel()

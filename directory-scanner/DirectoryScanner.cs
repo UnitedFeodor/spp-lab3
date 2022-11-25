@@ -28,8 +28,9 @@ namespace directory_scanner
                     throw new Exception($"Illegal thread count: {maxThreadCount}");
                 }
 
-                _tokenSource = new CancellationTokenSource();
                 _maxThreadCount = maxThreadCount;
+                _tokenSource = new CancellationTokenSource();
+                
             }
 
             public void Start(string path)
@@ -48,32 +49,36 @@ namespace directory_scanner
 
                 var directoryInfo = new DirectoryInfo(path);
                 _tree = new FileTree(true, directoryInfo.Name, directoryInfo.FullName,(double) 100);
-                
-                _tree.Children = new List<FileTree>();
+
                 _taskQueue = new TaskQueue(_tokenSource, _maxThreadCount);
+                _tree.Children = new List<FileTree>();
+                
                 _taskQueue.EnqueueTask(() => ScanDirectory(_tree));
             }
 
             public FileTree Stop()
             {
                 _taskQueue.Cancel();
-                _tree.GetLength();
                 _tree.GetLengthPercentage();
+                _tree.GetLength();
+               
                 return _tree;
             }
 
             public FileTree Finish()
             {
                 _taskQueue.WaitForEnd();
-                _tree.GetLength();
                 _tree.GetLengthPercentage();
+                _tree.GetLength();
+                
                 return _tree;
             }
 
             private void ScanDirectory(FileTree node)
             {
-                var directoryInfo = new DirectoryInfo(node.FullName);
                 var token = _tokenSource.Token;
+                var directoryInfo = new DirectoryInfo(node.FullName);
+                
 
                 List<DirectoryInfo>? directories;
                 try
@@ -107,7 +112,6 @@ namespace directory_scanner
                             return;
 
                         var tree = new FileTree(true, directory.Name, directory.FullName);
-                    
                         tree.Children = new List<FileTree>();
                         node.Children.Add(tree);
                         _taskQueue.EnqueueTask(() => ScanDirectory(tree));
@@ -120,9 +124,7 @@ namespace directory_scanner
                     {
                         if (token.IsCancellationRequested)
                             return;
-
                         var tree = new FileTree(false, file.Name, file.FullName,(ulong) file.Length);
-                        
                         node.Children.Add(tree);
                     }
                 }
