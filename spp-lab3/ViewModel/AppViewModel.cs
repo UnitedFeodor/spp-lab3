@@ -16,6 +16,8 @@ namespace directory_scanner.wpf.ViewModel
         public RelayCommand StartScanningCommand { get; set; }
         public RelayCommand StopScanningCommand { get; set; }
 
+        public RelayCommand ShowLength { get; set; }
+
         private DirectoryScanner _directoryScanner;
 
         private string? _path;
@@ -64,6 +66,18 @@ namespace directory_scanner.wpf.ViewModel
             }
         }
 
+        private ulong _length  = 0;
+
+        public ulong Length
+        {
+            get => _length;
+            set
+            {
+                _length = value;
+                OnPropertyChanged("Length");
+            }
+        }
+
         public AppViewModel()
         {
             SetDirectoryCommand = new RelayCommand(_ =>
@@ -82,7 +96,22 @@ namespace directory_scanner.wpf.ViewModel
                 {
                     _directoryScanner = new DirectoryScanner(MaxThreadCount);
                     _directoryScanner.Start(Path);
+                    /*(for (int i = 0; i < 50; i++)
+                    {
+                        //System.Threading.Thread.Sleep(100);
+                        Length = _directoryScanner.RootSize;
+                        //MyValue = i.ToString();
+                    }*/
+                    
+                    while (_directoryScanner._taskQueue._taskCount != _maxThreadCount && !_directoryScanner._tokenSource.Token.IsCancellationRequested)
+                    {
+                        
+                        Length = _directoryScanner.RootSize;
+                    }
+
                     var directoryTree = _directoryScanner.Finish();
+
+                    Length = _directoryScanner.RootSize;
                     Tree = new ModelFileTree();
                     Tree.Children = new List<ModelFileTree>() { new(directoryTree) };
                     IsScanning = false;
@@ -101,16 +130,21 @@ namespace directory_scanner.wpf.ViewModel
                     }
                 };
             }, _ => IsScanning);
+
+           
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
-            if (PropertyChanged != null)
+            /*
+            if (IsScanning)
             {
-                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(Length));
+            }*/
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            
         }
     }
 }

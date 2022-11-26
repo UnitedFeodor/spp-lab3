@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
    
+        
+        
         xmlns:viewmodel="clr-namespace:directory_scanner.wpf.ViewModel"  d:DataContext="{d:DesignInstance Type=viewmodel:AppViewModel}"
         xmlns:local="clr-namespace:spp_lab3"
         mc:Ignorable="d"
@@ -32,13 +34,15 @@
         <StackPanel Grid.Column="0" Background="AliceBlue">
             <TextBlock Margin="5 15" FontFamily="Arial" FontSize="15" Foreground="Black" Text="ROOT FILE PATH: "/>
             <TextBlock Margin="5 0" FontFamily="Arial" FontSize="15" Foreground="Black" TextWrapping="Wrap" Text="{Binding Path}"/>
-            <TextBlock Margin="5 0 0 250" FontFamily="Arial" FontSize="15" Foreground="Black" Text="{Binding StringFormat=(\{0\} bytes\), Path=Length}"/>
+            <TextBlock Margin="5 0 0 250" FontFamily="Arial" FontSize="15" Foreground="Black" Text="{Binding StringFormat=(\{0\} bytes\), Path=Length, UpdateSourceTrigger=PropertyChanged}">
+                
+            </TextBlock>
 
             <Button Foreground="Black" Margin="5" Command="{Binding SetDirectoryCommand}">Choose directory</Button>
             <Button Foreground="Black" Margin="5" Command="{Binding StartScanningCommand}">Scan</Button>
             <Button Foreground="Black" Margin="5 5 5 15" VerticalAlignment="Bottom" Command="{Binding StopScanningCommand}">Stop</Button>
-            
 
+            
 
 
 

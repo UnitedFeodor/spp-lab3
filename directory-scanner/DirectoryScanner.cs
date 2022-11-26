@@ -8,6 +8,7 @@ namespace directory_scanner
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
@@ -16,10 +17,12 @@ namespace directory_scanner
     {
         public class DirectoryScanner
         {
-            private FileTree _tree { get; set; }
-            private CancellationTokenSource _tokenSource;
-            private TaskQueue _taskQueue;
+            public FileTree _tree { get; set; }
+            public CancellationTokenSource _tokenSource;
+            public TaskQueue _taskQueue;
             private ushort _maxThreadCount;
+
+            public ulong RootSize;
 
             public DirectoryScanner(ushort maxThreadCount)
             {
@@ -53,10 +56,21 @@ namespace directory_scanner
                 
                 _taskQueue = new TaskQueue(_tokenSource, _maxThreadCount);
 
-                _tree.Children = new List<FileTree>();
+                _tree.Children = new ObservableCollection<FileTree>();
+                _tree.Children.CollectionChanged += (e, v) => updateConditions();
+
+
                 _taskQueue.EnqueueTask(() => ScanDirectory(_tree));
             }
 
+            public void updateConditions()
+            {
+                lock (_tree)
+                {
+                                                                                                                    Thread.Sleep(10);
+                    RootSize = _tree.GetLength();
+                }
+            }
             public FileTree Stop()
             {
                 try
@@ -79,6 +93,8 @@ namespace directory_scanner
                 _tree.GetLengthPercentage();
                 return _tree;
             }
+
+            
 
             private void ScanDirectory(FileTree node)
             {
@@ -118,7 +134,8 @@ namespace directory_scanner
                             return;
 
                         var tree = new FileTree(true, directory.Name, directory.FullName);
-                        tree.Children = new List<FileTree>();
+                        tree.Children = new ObservableCollection<FileTree>();
+                        tree.Children.CollectionChanged += (e, v) => updateConditions();
                         node.Children.Add(tree);
                         _taskQueue.EnqueueTask(() => ScanDirectory(tree));
                     }
@@ -134,6 +151,8 @@ namespace directory_scanner
                         node.Children.Add(tree);
                     }
                 }
+
+                
 
             }
         }

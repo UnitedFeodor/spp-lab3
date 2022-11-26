@@ -10,10 +10,10 @@ namespace directory_scanner
     public class TaskQueue
     {
         private readonly ConcurrentQueue<Action?> _tasks = new();
-        private ushort _taskCount;
+        public ushort _taskCount;
         
         private readonly List<Thread> _threads = new();
-        private ushort _maxThreadCount;
+        public ushort _maxThreadCount;
 
         private readonly CancellationTokenSource _cancellationToken;
 
@@ -83,7 +83,7 @@ namespace directory_scanner
         {
             while (_taskCount != _maxThreadCount && !_cancellationToken.Token.IsCancellationRequested) 
             {
-            
+                
             }
         }
 

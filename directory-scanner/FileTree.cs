@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace directory_scanner
         public ulong Length { get; set; } //file size
         public double LengthPercentage { get; set; }
 
-        public List<FileTree> Children { get; set; }
+        public ObservableCollection<FileTree> Children { get; set; }
 
         public FileTree(bool isDir, string name,string fullName, double lengthPercentage, ulong length)
         {
@@ -53,16 +54,22 @@ namespace directory_scanner
         }
         public ulong GetLength()
         {
-            if (IsDirectory)
+            lock (this)
             {
-                if (Children.Count != 0)
+                if (IsDirectory)
                 {
-                    foreach(var child in Children) {
-                        Length += child.GetLength();
+                    if (Children.Count != 0)
+                    {
+                        Length = 0;
+                        foreach (var child in Children)
+                        {
+                            Length += child.GetLength();
+                        }
                     }
-                } else
-                {
-                    Length = 0;
+                    else
+                    {
+                        Length = 0;
+                    }
                 }
             }
             return Length;
