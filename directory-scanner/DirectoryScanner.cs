@@ -87,7 +87,7 @@ namespace directory_scanner
 
             public FileTree Finish()
             {
-                _taskQueue.WaitForEnd();
+                //_taskQueue.WaitForEnd();
                 
                 _tree.GetLength();
                 _tree.GetLengthPercentage();
