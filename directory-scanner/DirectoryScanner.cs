@@ -50,27 +50,33 @@ namespace directory_scanner
                 var directoryInfo = new DirectoryInfo(path);
                 _tree = new FileTree(true, directoryInfo.Name, directoryInfo.FullName,(double) 100);
 
-                _taskQueue = new TaskQueue(_tokenSource, _maxThreadCount);
-                _tree.Children = new List<FileTree>();
                 
+                _taskQueue = new TaskQueue(_tokenSource, _maxThreadCount);
+
+                _tree.Children = new List<FileTree>();
                 _taskQueue.EnqueueTask(() => ScanDirectory(_tree));
             }
 
             public FileTree Stop()
             {
-                _taskQueue.Cancel();
-                _tree.GetLengthPercentage();
+                try
+                {
+                    _taskQueue.Cancel();
+                } catch
+                {
+
+                }
                 _tree.GetLength();
-               
+                _tree.GetLengthPercentage();
                 return _tree;
             }
 
             public FileTree Finish()
             {
                 _taskQueue.WaitForEnd();
-                _tree.GetLengthPercentage();
-                _tree.GetLength();
                 
+                _tree.GetLength();
+                _tree.GetLengthPercentage();
                 return _tree;
             }
 

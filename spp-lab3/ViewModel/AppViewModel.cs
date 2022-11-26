@@ -29,7 +29,7 @@ namespace directory_scanner.wpf.ViewModel
             }
         }
 
-        private ushort _maxThreadCount = 20;
+        private ushort _maxThreadCount = 50;
 
         public ushort MaxThreadCount
         {
@@ -53,7 +53,7 @@ namespace directory_scanner.wpf.ViewModel
             }
         }
 
-        private bool _isScanning;
+        private volatile bool _isScanning;
         public bool IsScanning
         {
             get => _isScanning;
@@ -107,7 +107,10 @@ namespace directory_scanner.wpf.ViewModel
 
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+            {
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }

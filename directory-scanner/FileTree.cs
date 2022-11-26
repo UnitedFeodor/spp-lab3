@@ -73,7 +73,10 @@ namespace directory_scanner
             if (!IsDirectory) return LengthPercentage;
             foreach (var child in Children)
             {
+                
                 child.LengthPercentage = (double)child.Length / Length * 100;
+                
+
                 child.GetLengthPercentage();
             }
             return LengthPercentage;

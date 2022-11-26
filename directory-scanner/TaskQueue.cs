@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace directory_scanner
 {
     public class TaskQueue
     {
-        private readonly Queue<Action?> _tasks = new();
+        private readonly ConcurrentQueue<Action?> _tasks = new();
         private ushort _taskCount;
         
         private readonly List<Thread> _threads = new();
@@ -67,7 +68,9 @@ namespace directory_scanner
                 }
                 try
                 {
-                    return _tasks.Dequeue();
+                    Action? retValue;
+                    _tasks.TryDequeue(out retValue);
+                    return retValue;
                 }
                 catch (Exception)
                 {
