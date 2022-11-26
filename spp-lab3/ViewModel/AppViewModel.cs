@@ -96,13 +96,8 @@ namespace directory_scanner.wpf.ViewModel
                 {
                     _directoryScanner = new DirectoryScanner(MaxThreadCount);
                     _directoryScanner.Start(Path);
-                    /*(for (int i = 0; i < 50; i++)
-                    {
-                        //System.Threading.Thread.Sleep(100);
-                        Length = _directoryScanner.RootSize;
-                        //MyValue = i.ToString();
-                    }*/
-                    
+
+                    Length = 1;
                     while (_directoryScanner._taskQueue._taskCount != _maxThreadCount && !_directoryScanner._tokenSource.Token.IsCancellationRequested)
                     {
                         
@@ -111,7 +106,7 @@ namespace directory_scanner.wpf.ViewModel
 
                     var directoryTree = _directoryScanner.Finish();
 
-                    Length = _directoryScanner.RootSize;
+                    Length = directoryTree.Length;
                     Tree = new ModelFileTree();
                     Tree.Children = new List<ModelFileTree>() { new(directoryTree) };
                     IsScanning = false;
